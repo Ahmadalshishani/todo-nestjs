@@ -19,12 +19,12 @@ export class TodoController {
   }
 
   @Patch(':id')
-  async markTodoCompleted(@Param('id') id: number) {
-    return this.todoService.markTodoCompleted(id);
+  async markTodoCompleted(@Param('id') id: string) {
+    return this.todoService.markTodoCompleted(+id);
   }
 
   @Delete(':id')
-  async deleteTodo(@Param('id') id: number) {
-    return this.todoService.deleteTodo(id);
+  async deleteTodo(@Param('id') id: string) {
+    return this.todoService.deleteTodo(+id);
   }
 }

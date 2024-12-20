@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { TodoService } from '../todo/todo.service';
+import { NotFoundException } from '@nestjs/common';
 
 @Controller('user')
 export class UserController {
@@ -25,7 +26,9 @@ export class UserController {
   ) {
     const user = await this.userService.validateUser(email, password);
     if (!user) {
-      return { message: 'Invalid credentials' };
+   
+      
+    throw new NotFoundException("No user found");
     }
 
     const todos = await this.todoService.getTodosByUser(user.id);
